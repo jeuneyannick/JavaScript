@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Javascript par la pratique</title>
+</head>
+<body>
+     <button id="btnGreet">Salut </button>
+    <script>
+       
+      //fonction anonyme passé en callback de la fonction addEventListener
+      // callback = fonction qu'on passe à une fonction
+      let btnGreet = document.getElementById("btnGreet"); 
+      // // Arrow function  (params, params)=>{}
+      btnGreet.addEventListener("click", ()=>{
+          console.log("click"); 
+      })
+       var isYoung = true; 
+       if(isYoung){
+           let nextAction = "Let fonctionne avec les scopes de bloc"
+       }
+      function greet(firstName){
+          console.log("Salut, je suis en train d'apprendre du JavaScript EcmaScript6 " + firstName); 
+      }
+      greet("Yannick"); 
+    
+     //Function expression
+      var sayGoodBye = function sayGoodBye (firstName){
+          var result = "Au revoir " + firstName; 
+          return result; 
+      }; 
+
+      // On spécifie des paramètres à la fonction
+      function eat(food, quantity = 3){
+          // nouveauté ES6: possibilité de mettre des paramètres par défauts
+          console.log(`je mange :${food} Quantité mangée ; ${quantity}`); 
+      }
+      eat(`Tacos`, 5)
+
+     //Immediately invoked function expression IIFE
+        var plane = {planType: 'Airbus'}; 
+      (function(){
+          console.log("IIFE appelé"); 
+         var testScope = "Crée depuis une IIFE"; 
+         console.log(testScope)
+         plane.country = 'France'; 
+
+         console.log(plane)
+      }(plane)); 
+    
+       //Function utilisée comme constructeur 
+       function Travel(destination, duration, price, pension, departureForm, other){
+        // convention d'écriture pour les fonctions constructeur: Toujours une majuscule au début du nom de la fonction 
+       }
+    </script>
+</body>
+</html>
