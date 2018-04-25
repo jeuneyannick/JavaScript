@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Javascript par la pratique</title>
+</head>
+<body>
+    <script>
+        function Vehicule(brand,model,color){
+            this.brand = brand; 
+            this.model = model; 
+            this.color = color; 
+            this.speed = 10;  
+        };
+        //Un prototype est un objet qui existe sur chaque objet JavaScript
+        const bolide = new Vehicule('Porsche', 'Panamera', 'Rouge');
+        const bolide2 = new Vehicule(`Ferrari`, `Testarossa`,`Noire`);
+        const bolide3 =  new Vehicule(`Audi`, `Sirocco`, 'Blanc'); 
+        console.log(Vehicule.prototype); 
+        //On attribue une propriété au prototype de la fonction Constructeur...
+        Vehicule.prototype.country = "Italie";
+        Vehicule.prototype.honk = function (){
+            console.log(`tuuuuuuuuuuuu`)
+        }; 
+        Vehicule.prototype.accelerate = function(){
+            this.speed += 10; 
+        }; 
+        Vehicule.prototype.year = 2018; 
+        bolide3.country = "Allemagne"; 
+        bolide3.year = 2017; 
+        console.log(bolide3.__proto__); 
+        //...qu'on retouve dans les objets instanciés 
+        console.log(bolide.__proto__); 
+        console.log(bolide2.__proto__);
+        console.log(bolide3)
+
+        console.log(Object.keys(bolide))
+        
+    </script>
+</body>
+</html>

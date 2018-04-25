@@ -9,7 +9,8 @@
 </head>
 <body>
     <script>
-        //Avec Javascript, on peut creer des objets à la volée
+        
+        //Avec Javascript, on peut creer des objets à la volée (sans les initialiser au prélable à la différence d'autres langages plus strictes)
         //object literal syntax
         const vehicule = {
             id:1, 
@@ -18,14 +19,15 @@
             honk:()=>{
                 console.log(`Tuuuuuuut ! `)
             }
-        }; 
-        //Fonction constructeur pour initialiser les propriétés d'un objet
+        };
+
+        //Fonction constructeur pour initialiser les propriétés et les méthodes d'un objet
         function Vehicule(brand,model,color){
             this.brand = brand; 
             this.model = model; 
             this.color = color;  
         };
-
+      
         const bolide = new Vehicule('Porsche', 'Panamera', 'Rouge');
         const bolide2 = new Vehicule(`Ferrari`, `Testarossa`,`Noire`); 
         console.log(bolide); 
@@ -66,14 +68,14 @@
 
         console.log(vehicule.summary)
 
-        // //Méthode statique pour afficher toutes les clefs d'un objet
-        // const result = Object.keys(vehicule); 
-        // console.log(result); 
-        // result.map((key)=>{
-        //    console.log( `Voici la clé ${key}`); 
-        // })
-        // // Modification de l'object par le biais de la notation pointée 
-        // vehicule.model = "Mégane"; 
+        //Méthode statique pour afficher toutes les clefs d'un objet
+         const result = Object.keys(vehicule); 
+        console.log(result); 
+         result.map((key)=>{
+           console.log( `Voici la clé ${key}`); 
+        })
+        // Modification de l'object par le biais de la notation pointée 
+         vehicule.model = "Mégane"; 
     
     
     </script>
