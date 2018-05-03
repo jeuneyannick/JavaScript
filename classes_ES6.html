@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript par la pratique</title>
+</head>
+<body>
+    <script>
+        class Vehicule{
+            constructor(brand, model, color){
+                console.log(`dans le constructeur de la classe Vehicule`); 
+                this.brand = brand;
+                this.model = model;
+                this.color = color;
+            }
+        }
+
+        class Bike extends Vehicule{
+            constructor(brand, model, color, fullPowered, exhaustPipeBrand){
+                console.log(`dans le constructeur de la classe BIKE`)
+                //pour appeler le constructeur parent, on passe à super ce qu'attend le constructeur parent 
+                super(brand,model,color); 
+                this.fullPowered = fullPowered; 
+                this.exhaustPipeBrand = exhaustPipeBrand; 
+
+                
+            }
+        }
+
+        const zx6r = new Bike('Kawasaki', 'Ninja Zx6R', 'verte', true, 'devil'); 
+    </script>
+</body>
+</html>

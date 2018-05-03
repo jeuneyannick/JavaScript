@@ -8,37 +8,80 @@
     <title>Javascript par la pratique</title>
 </head>
 <body>
+    <div>Salut c'est Yannick, jeune développeur intégrateur web junior. 
+        je me spécialise en JavaScript, PHP et Python
+    </div>
+    <div>J'aime beaucoup la programmation orienté objet</div>
     <script>
-        function Vehicule(brand,model,color){
+        function Vehicule(brand,model,color,driver = `anonyme`){
+            console.log(`dans le constructeur de Vehicule`); 
             this.brand = brand; 
             this.model = model; 
-            this.color = color; 
-            this.speed = 10;  
+            this.color = color;
+            this.speed = 0;    
         };
-        //Un prototype est un objet qui existe sur chaque objet JavaScript
-        const bolide = new Vehicule('Porsche', 'Panamera', 'Rouge');
-        const bolide2 = new Vehicule(`Ferrari`, `Testarossa`,`Noire`);
-        const bolide3 =  new Vehicule(`Audi`, `Sirocco`, 'Blanc'); 
-        console.log(Vehicule.prototype); 
-        //On attribue une propriété au prototype de la fonction Constructeur...
-        Vehicule.prototype.country = "Italie";
-        Vehicule.prototype.honk = function (){
-            console.log(`tuuuuuuuuuuuu`)
-        }; 
+        // Un prototype est un objet existant sur chaque fonction Javascript
+        const vehicle = new Vehicule(`Renault`,'Megane',`noire`);
+        const vehicle2 = new Vehicule(`Peugeot`,'206',`bleue`);
+        const vehicle3 = new Vehicule(`Audi`,'Sirocco',`blanche`);
+
+        Vehicule.prototype.country = `France`;// On ajoute une propriété au prototype qu'on retrouvera dans le prototype de toutes les instances crées à l'aide du constructeur
+        Vehicule.prototype.honk = function(){
+            console.log(`TUUUUUUT`); 
+        };// On peut aussi ajouter une fonction à un prototype qu'on retrouvera dans les instances crées
+
         Vehicule.prototype.accelerate = function(){
             this.speed += 10; 
         }; 
-        Vehicule.prototype.year = 2018; 
-        bolide3.country = "Allemagne"; 
-        bolide3.year = 2017; 
-        console.log(bolide3.__proto__); 
-        //...qu'on retouve dans les objets instanciés 
-        console.log(bolide.__proto__); 
-        console.log(bolide2.__proto__);
-        console.log(bolide3)
-
-        console.log(Object.keys(bolide))
         
+        Vehicule.prototype.year = 2018; 
+        vehicle3.year = 2017; 
+        vehicle3.driver = "Markus"; 
+        console.log(`vehicle3`,vehicle3); 
+        // L'objet vehicle3 possède deux propriétés de plus que les autres instances.
+        //car on est parti chercher les propriétés year et country dans le prototype de sa fonction constructeur, pour les redéfinir dans l'objet.
+
+        console.log(Vehicule.prototype);// Prototype : simple objet jusque là;
+        console.log(`vehicle.__proto__`,vehicle.__proto__);// __proto__ : syntaxe pour voir le prototype d'un objet
+        console.log(`vehicle2.__proto__`,vehicle2.__proto__);// On retrouve la propriété country qu'on a défini dans la fonction constructeur
+      
+        vehicle3.country =`Allemagne`;// on change la propriété, issue du prototype de la fonction constructeur, pour cette instance.
+        console.log(`Object.keys(vehicle3)`,Object.keys(vehicle3));// La propriété redéfinie précédemment fait désormais partie des clés de l'objet vehicule3 
+
+
+        console.log(`keys de vehicle`,Object.keys(vehicle));// pour voir toutes les clés de l'objet
+        console.log(`vehicle.country`,vehicle.country);// Il hérite de cette propriété du prototype de la fonction constructeur Vehicule
+        
+        // Pour vérifier que le prototype de l'objet pointe bien vers le prototype de son constructeur
+        console.log(`vehicle.__proto__ === Vehicule.prototype`,vehicle.__proto__ === Vehicule.prototype); 
+
+
+        Vehicule.prototype = { country:`Allemagne`, speedLimitation: false}// On crée un nouvel objet dans le prototype
+        //Ce nouvel objet sera utilisé à chaque fois que l'on créera de nouvelles instances à partir du constructeur
+
+        const vehicle4 = new Vehicule(`Porsche`,`Panamera`,`gris`); 
+        console.log(vehicle4.__proto__); 
+        //cet objet hérite donc de l'objet du nouveau prototype
+        
+        const divs = document.querySelectorAll('div');
+        console.log(divs)// Faire attention au __proto__ pour vérifier les methodes et propriétés qu'on a à disposition. 
+        //ce ne sont pas tous les mêmes.
+
+
+        //Chaine d'héritage prototypal
+
+        function Bike(brand, model, color, fullPowered, exhaustPipeBrand){
+            console.log(`dans le constructeur de Bike`); 
+            Vehicule.call(this, this.brand, this.model, this.color); 
+            this.fullPowered = fullPowered; 
+            this.exhaustPipeBrand = exhaustPipeBrand; 
+        }
+
+        
+        Bike.prototype = Object.create(Vehicule.prototype); // on veut que le prototype de Bike soit le même que celui de Vehicule
+        Bike.prototype.constructor = Bike;// on précise que le constructeur est Bike
+        const zx6r = new Bike(`Kawasaki`, `Ninja ZX-6R`, true, `devil`);
+        const moto = new Bike ('Yamaha', 'Ninja 3456', false, 'dragon'); 
     </script>
 </body>
 </html>
