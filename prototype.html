@@ -42,7 +42,7 @@
         //car on est parti chercher les propriétés year et country dans le prototype de sa fonction constructeur, pour les redéfinir dans l'objet.
 
         console.log(Vehicule.prototype);// Prototype : simple objet jusque là;
-        console.log(`vehicle.__proto__`,vehicle.__proto__);// __proto__ : syntaxe pour voir le prototype d'un objet
+        console.log(`vehicle.__proto__`,vehicle.__proto__);// __proto__ : syntaxe pour voir le prototype d'une instance
         console.log(`vehicle2.__proto__`,vehicle2.__proto__);// On retrouve la propriété country qu'on a défini dans la fonction constructeur
       
         vehicle3.country =`Allemagne`;// on change la propriété, issue du prototype de la fonction constructeur, pour cette instance.

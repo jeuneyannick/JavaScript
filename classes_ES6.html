@@ -8,26 +8,25 @@
 </head>
 <body>
     <script>
-        class Vehicule{
+        class Vehicule{// on peut créer des classes comme dans un langage orienté objet habituel
             constructor(brand, model, color){
                 console.log(`dans le constructeur de la classe Vehicule`); 
                 this.brand = brand;
                 this.model = model;
                 this.color = color;
             }
-        }
+        }// fin de la class Vehicule
 
-        class Bike extends Vehicule{
+        class Bike extends Vehicule{// la class Bike hérite de la class Vehicule. cela nous crée la chaine d'héritage prototypal directement
             constructor(brand, model, color, fullPowered, exhaustPipeBrand){
                 console.log(`dans le constructeur de la classe BIKE`)
-                //pour appeler le constructeur parent, on passe à super ce qu'attend le constructeur parent 
-                super(brand,model,color); 
+                super(brand,model,color); //pour appeler le constructeur parent, on passe à super ce qu'attend le constructeur parent
                 this.fullPowered = fullPowered; 
                 this.exhaustPipeBrand = exhaustPipeBrand; 
 
                 
             }
-        }
+        }// fin de la class Bike
 
         const zx6r = new Bike('Kawasaki', 'Ninja Zx6R', 'verte', true, 'devil'); 
     </script>
